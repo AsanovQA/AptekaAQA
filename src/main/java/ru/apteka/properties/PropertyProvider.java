@@ -8,9 +8,9 @@ public class PropertyProvider {
     private final String platformName;
     private final String automationName;
     private final String appValue;
-//    private final String resetOption;
-//    private final String fullReset;
-//    private final String iosPath = "/src/resources/ios.properties";
+    private final String resetOption;
+    private final String fullReset;
+
     public Platform platform = Platform.ANDROID;
     public PropertyProvider() {
         final String androidPath = "/Users/timurasanov/IdeaProjects/AptekaAQA/src/main/resources/android.properties";
@@ -20,10 +20,10 @@ public class PropertyProvider {
         platformName = propertyReader.getPropertyByKey("platformName");
         automationName = propertyReader.getPropertyByKey("automationName");
         appValue = propertyReader.getPropertyByKey("appValue");
-//        final String configPath = "/Users/timurasanov/IdeaProjects/AptekaAQA/src/main/resources/config.properties";
-//        propertyReader = new PropertyReader(configPath);
-//        resetOption = propertyReader.getPropertyByKey("resetOption");
-//        fullReset = propertyReader.getPropertyByKey("fullReset");
+        final String configPath = "/Users/timurasanov/IdeaProjects/AptekaAQA/src/main/resources/config.properties";
+        propertyReader = new PropertyReader(configPath);
+        resetOption = propertyReader.getPropertyByKey("resetOption");
+        fullReset = propertyReader.getPropertyByKey("fullReset");
     }
     public String getDeviceName() {
         return deviceName;
@@ -40,10 +40,10 @@ public class PropertyProvider {
     public String getAppValue() {
         return appValue;
     }
-//    public String getResetOption() {
-//        return resetOption;
-//    }
-//    public String getFullReset() {
-//        return fullReset;
-//    }
+    public String getResetOption() {
+        return resetOption;
+    }
+    public String getFullReset() {
+        return fullReset;
+    }
 }
