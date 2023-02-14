@@ -38,11 +38,11 @@ public class SwipeHelper {
             case UP -> PointOption.point(width, (int) (height * 0.7));
             case DOWN -> PointOption.point(width, (int) (dims.height * 0.1));
         };
-//        new TouchAction(driver)
-//                .press(point)
-//                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))
-//                .moveTo(end)
-//                .release()
-//                .perform();
+        new TouchAction(driver)
+                .press(point)
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))
+                .moveTo(end)
+                .release()
+                .perform();
     }
 }
