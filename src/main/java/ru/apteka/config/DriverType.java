@@ -24,16 +24,16 @@ public class DriverType extends ConfigCapabilities {
         return driver;
     }
     DesiredCapabilities capabilities = new DesiredCapabilities();
+    String appiumURL = "http://localhost:4723/";
     private AppiumDriver getAndroidDriver(PropertyProvider propertyProvider) {
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, propertyProvider.getDeviceName());
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, propertyProvider.getPlatformName());
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, propertyProvider.getPlatformVersion());
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, propertyProvider.getAutomationName());
         capabilities.setCapability(MobileCapabilityType.APP, propertyProvider.getAppValue());
-        capabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, "true");
         capabilities.merge(setCommonCapabilities(capabilities));
         try {
-            return new AndroidDriver(new URL("http://localhost:4723/"), capabilities);
+            return new AndroidDriver(new URL(appiumURL), capabilities);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -45,11 +45,9 @@ public class DriverType extends ConfigCapabilities {
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, propertyProvider.getPlatformVersion());
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, propertyProvider.getAutomationName());
         capabilities.setCapability(MobileCapabilityType.APP, propertyProvider.getAppValue());
-        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.androidiostestingapteka.WebDriverAgentRunner");
-        capabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, "true");
         capabilities.merge(setCommonCapabilities(capabilities));
         try {
-            return new IOSDriver<>(new URL("http://localhost:4723/"), capabilities);
+            return new IOSDriver<>(new URL(appiumURL), capabilities);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }

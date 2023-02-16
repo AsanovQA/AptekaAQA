@@ -10,8 +10,9 @@ public class PropertyProvider {
     private final String appValue;
     private final String resetOption;
     private final String fullReset;
+    private final String permission;
 
-    public Platform platform = Platform.ANDROID;
+    public Platform platform = Platform.IOS;
     public PropertyProvider() {
         PropertyReader propertyReader = null;
         final String androidPath = "/Users/timurasanov/IdeaProjects/AptekaAQA/src/main/resources/android.properties";
@@ -27,8 +28,9 @@ public class PropertyProvider {
         automationName = propertyReader.getPropertyByKey("automationName");
         appValue = propertyReader.getPropertyByKey("appValue");
         propertyReader = new PropertyReader(configPath);
-        resetOption = propertyReader.getPropertyByKey("resetOption");
+        resetOption = propertyReader.getPropertyByKey("isReset");
         fullReset = propertyReader.getPropertyByKey("fullReset");
+        permission = propertyReader.getPropertyByKey("acceptAllPermission");
     }
     public String getDeviceName() {
         return deviceName;
@@ -50,5 +52,9 @@ public class PropertyProvider {
     }
     public String getFullReset() {
         return fullReset;
+    }
+
+    public String getAcceptPermission() {
+        return permission;
     }
 }
