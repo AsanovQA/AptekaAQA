@@ -13,14 +13,19 @@ public class PropertyProvider {
 
     public Platform platform = Platform.ANDROID;
     public PropertyProvider() {
+        PropertyReader propertyReader = null;
         final String androidPath = "/Users/timurasanov/IdeaProjects/AptekaAQA/src/main/resources/android.properties";
-        PropertyReader propertyReader = new PropertyReader(androidPath);
+        final String iOSPath = "/Users/timurasanov/IdeaProjects/AptekaAQA/src/main/resources/ios.properties";
+        final String configPath = "/Users/timurasanov/IdeaProjects/AptekaAQA/src/main/resources/config.properties";
+        switch (platform) {
+            case ANDROID ->  propertyReader = new PropertyReader(androidPath);
+            case IOS -> propertyReader = new PropertyReader(iOSPath);
+        }
         deviceName = propertyReader.getPropertyByKey("deviceName");
         platformVersion = propertyReader.getPropertyByKey("platformVersion");
         platformName = propertyReader.getPropertyByKey("platformName");
         automationName = propertyReader.getPropertyByKey("automationName");
         appValue = propertyReader.getPropertyByKey("appValue");
-        final String configPath = "/Users/timurasanov/IdeaProjects/AptekaAQA/src/main/resources/config.properties";
         propertyReader = new PropertyReader(configPath);
         resetOption = propertyReader.getPropertyByKey("resetOption");
         fullReset = propertyReader.getPropertyByKey("fullReset");
