@@ -8,29 +8,26 @@ public class PropertyProvider {
     private final String platformName;
     private final String automationName;
     private final String appValue;
-    private final String resetOption;
+    private final String noResetOption;
     private final String fullReset;
     private final String permission;
 
-    public Platform platform = Platform.IOS;
+    public Platform platform = Platform.ANDROID;
     public PropertyProvider() {
-        PropertyReader propertyReader = null;
-        final String androidPath = "/Users/timurasanov/IdeaProjects/AptekaAQA/src/main/resources/android.properties";
-        final String iOSPath = "/Users/timurasanov/IdeaProjects/AptekaAQA/src/main/resources/ios.properties";
-        final String configPath = "/Users/timurasanov/IdeaProjects/AptekaAQA/src/main/resources/config.properties";
-        switch (platform) {
-            case ANDROID ->  propertyReader = new PropertyReader(androidPath);
-            case IOS -> propertyReader = new PropertyReader(iOSPath);
-        }
+        PropertyReader propertyReader;
+        final String androidPath = "src/main/resources/android.properties";
+        final String configPath = "src/main/resources/config.properties";
+        propertyReader = new PropertyReader(androidPath);
         deviceName = propertyReader.getPropertyByKey("deviceName");
         platformVersion = propertyReader.getPropertyByKey("platformVersion");
         platformName = propertyReader.getPropertyByKey("platformName");
         automationName = propertyReader.getPropertyByKey("automationName");
         appValue = propertyReader.getPropertyByKey("appValue");
         propertyReader = new PropertyReader(configPath);
-        resetOption = propertyReader.getPropertyByKey("isReset");
+        noResetOption = propertyReader.getPropertyByKey("noReset");
         fullReset = propertyReader.getPropertyByKey("fullReset");
         permission = propertyReader.getPropertyByKey("acceptAllPermission");
+
     }
     public String getDeviceName() {
         return deviceName;
@@ -47,8 +44,8 @@ public class PropertyProvider {
     public String getAppValue() {
         return appValue;
     }
-    public String getResetOption() {
-        return resetOption;
+    public String getNoResetOption() {
+        return noResetOption;
     }
     public String getFullReset() {
         return fullReset;

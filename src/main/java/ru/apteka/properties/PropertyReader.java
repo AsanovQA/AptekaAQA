@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class PropertyReader {
-    private FileInputStream fis;
     Properties property = new Properties();
     public PropertyReader(String path) {
         try {
-            fis = new FileInputStream(path);
+            FileInputStream fis = new FileInputStream(path);
             property.load(fis);
+            fis.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
