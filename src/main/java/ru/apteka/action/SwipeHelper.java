@@ -10,21 +10,21 @@ import org.openqa.selenium.WebElement;
 import java.time.Duration;
 
 public class SwipeHelper {
-    AppiumDriver driver;
-    public SwipeHelper(AppiumDriver driver) {
+    AppiumDriver<WebElement> driver;
+    public SwipeHelper(AppiumDriver<WebElement> driver) {
         this.driver = driver;
     }
 
     public void swipe(Direction direction) {
         Dimension dims = driver.manage().window().getSize();
         int width = dims.width/2;
-        int height = (int) (dims.height*0.9);
+        int height = dims.height/2;
         swipeExecution(direction, width, height);
     }
 
     public void swipe(Direction direction, WebElement element) {
         Dimension dims = element.getSize();
-        int width = dims.width/5;
+        int width = dims.width/2;
         int height = dims.height/2;
         swipeExecution(direction, width, height);
     }
@@ -35,12 +35,12 @@ public class SwipeHelper {
         PointOption<?> end = switch (direction) {
             case LEFT -> PointOption.point((int) (width * 0.1), height);
             case RIGHT -> PointOption.point((int) (dims.width * 0.9), height);
-            case UP -> PointOption.point(width, (int) (height * 0.7));
+            case UP -> PointOption.point(width, (int) (height * 0.9));
             case DOWN -> PointOption.point(width, (int) (dims.height * 0.1));
         };
-        new TouchAction(driver)
+        new TouchAction<>(driver)
                 .press(point)
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(100)))
                 .moveTo(end)
                 .release()
                 .perform();
