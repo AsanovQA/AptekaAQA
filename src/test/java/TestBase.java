@@ -2,12 +2,13 @@
 import io.appium.java_client.AppiumDriver;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import ru.apteka.config.DriverFactory;
 
 public class TestBase {
-    protected static AppiumDriver driver;
+    protected static AppiumDriver<WebElement> driver;
     public static WebDriverWait wait;
     private static final DriverFactory driverFactory = new DriverFactory();
 
@@ -19,7 +20,7 @@ public class TestBase {
 
     @AfterAll
     public static void quitDriver() {
-        driver.quit();
+        driver.close();
     }
 
 
