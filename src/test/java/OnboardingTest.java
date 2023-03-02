@@ -35,7 +35,6 @@ public class OnboardingTest extends TestBase{
     @BeforeAll
     public static void closeWithTrueOnboardingSeen() {
         ApplicationProperties.getInstance().setOnboardingSeen(true);
-        System.out.println(ApplicationProperties.getInstance().isOnboardingSeen());
     }
 
 }
