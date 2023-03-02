@@ -1,3 +1,4 @@
+package ru.apteka.tests.android;
 
 import io.appium.java_client.AppiumDriver;
 import org.junit.jupiter.api.AfterAll;

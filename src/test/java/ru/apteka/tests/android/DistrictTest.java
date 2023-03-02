@@ -1,3 +1,5 @@
+package ru.apteka.tests.android;
+
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ru.apteka.pages.DistrictScreen;
