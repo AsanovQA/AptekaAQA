@@ -1,9 +1,6 @@
 package ru.apteka.tests.android;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import ru.apteka.pages.OnboardingScreen;
 import ru.apteka.properties.ApplicationProperties;
 
@@ -34,7 +31,7 @@ public class OnboardingTest extends TestBase{
         Assertions.assertEquals(onboardingScreen.getOnbListStr(0), onboardingScreen.getOnbDescription());
     }
 
-    @BeforeAll
+    @AfterAll
     public static void closeWithTrueOnboardingSeen() {
         ApplicationProperties.getInstance().setOnboardingSeen(true);
     }

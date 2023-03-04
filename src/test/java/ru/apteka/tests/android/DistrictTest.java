@@ -16,15 +16,15 @@ public class DistrictTest extends TestBase{
     public void input_unValidationValue_in_searchRoot() {
         districtScreen
                 .tapSearchRoot()
-                .sendDistrictKeys("!!#$%")
-                .districtListIsEmpty();
+                .sendDistrictKeys("!!#$%");
+        districtScreen.districtListIsEmpty();
     }
     @Test
     public void input_validationValue_in_searchRoot() {
         districtScreen
                 .tapSearchRoot()
-                .sendDistrictKeys("Новосибирск")
-                .districtListIsNotEmpty();
+                .sendDistrictKeys("Новосибирск");
+        districtScreen.districtListIsNotEmpty();
     }
     @Test
     public void open_skipDistrict_dialog() {
@@ -33,4 +33,10 @@ public class DistrictTest extends TestBase{
                 .skipDistrictDialog_isDisplayed()
                 .tapToOkBtn();
     }
+
+    @Test
+    public void tap_toDistrictListItem() {
+        districtScreen.tapToCityWithName();
+    }
+
 }

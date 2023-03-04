@@ -35,11 +35,8 @@ public class DistrictScreen extends MainScreen {
     MobileElement city_no_autoDest;
     @AndroidFindBy(id = "city_by_location_layout")
     MobileElement city_by_location;
-    public String district_toolbar = "Регион";
-    public String tv_title_str = "Для корректного отображения цен в вашем регионе требуется выбрать город. По умолчанию цены актуальны для Москвы.";
-    public String cancel_btn_str = "ПРОДОЛЖИТЬ";
-    public String ok_btn_str = "ВЫБРАТЬ ГОРОД";
-
+    @AndroidFindBy(id = "permission_message")
+    MobileElement permission_message;
     public void districtScreenIsDisplayed() {
         toolbar.isDisplayed();
         search.isDisplayed();
@@ -50,7 +47,9 @@ public class DistrictScreen extends MainScreen {
         return this;
     }
     public DistrictScreen sendDistrictKeys(String cityName) {
+        search.clear();
         search.sendKeys(cityName);
+        driver.hideKeyboard();
         return this;
     }
     public void tap_To_BackBtn() {
@@ -63,48 +62,23 @@ public class DistrictScreen extends MainScreen {
         cancel_btn.isDisplayed();
         return this;
     }
-    public DistrictScreen districtListIsNotEmpty() {
-        wait.until(ExpectedConditions.visibilityOf(toolbar));
-        district_item.isDisplayed();
-        return this;
+    public boolean districtListIsNotEmpty() {
+        return wait.until(ExpectedConditions.visibilityOf(district_item)).isDisplayed();
     }
-    public  DistrictScreen districtListIsEmpty() {
-        wait.until(ExpectedConditions.visibilityOf(district_item)).isDisplayed();
-        return this;
-    }
-    public void searchToCityNoAutoDest() {
-        wait.until(ExpectedConditions.visibilityOf(city_no_autoDest)).isDisplayed();
-    }
-    public String getSearchString() {
-        wait.until(ExpectedConditions.visibilityOf(search));
-        return search.getText();
-    }
-
-    public String getTvTitleString() {
-        return tv_title.getText().replaceAll("\\n", "");
-    }
-    public String getOkBtnStr() {
-        return ok_btn_str;
-    }
-    public String getCancelBtnStr() {
-        return cancel_btn_str;
-    }
-    public boolean dialogIsEmpty() {
+    public boolean districtListIsEmpty() {
         try {
-            dialog_panel.isDisplayed();
-        }
-        catch (StaleElementReferenceException e) {
-            return false;
+       wait.until(ExpectedConditions.visibilityOf(district_item));
+        } catch (Exception e) {
+            return true;
         }
         return false;
     }
-    public DistrictScreen delete_CityName() {
-        search.clear();
+    public DistrictScreen tapToFindLocation() {
+        city_by_location.click();
         return this;
     }
-    public String getDistrictTolbar() {
-        wait.until(ExpectedConditions.visibilityOf(toolbar));
-        return toolbar.getText();
+    public boolean locationPermissionIsDisplayed() {
+        return permission_message.isDisplayed();
     }
     public DistrictScreen tapToOkBtn() {
         dialog_okBtn.click();
@@ -118,9 +92,9 @@ public class DistrictScreen extends MainScreen {
         driver.navigate().back();
         return this;
     }
-    public void tapToCityWithName(String cityname) {
+    public void tapToCityWithName() {
         wait.until(ExpectedConditions.visibilityOf(district_item));
-        MobileElement city_wt_name = (MobileElement) driver.findElement(By.xpath("//android.widget.TextView[@text='"+cityname+"']"));
+        MobileElement city_wt_name = (MobileElement) driver.findElement(By.xpath("//android.widget.TextView[@text='"+search.getText()+"']"));
         ApplicationProperties.getInstance();
         ApplicationProperties.setSelectedDistrict(city_wt_name.getText());
         city_wt_name.click();
