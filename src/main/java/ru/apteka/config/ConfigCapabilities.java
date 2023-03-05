@@ -13,9 +13,10 @@ public class ConfigCapabilities {
         capabilities.setCapability(IOSMobileCapabilityType.AUTO_ACCEPT_ALERTS, propertyProvider.getAcceptPermission());
         capabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, propertyProvider.getAcceptPermission());
         if (ApplicationProperties.getInstance().isOnboardingSeen()) {
-            capabilities.setCapability(MobileCapabilityType.NO_RESET, propertyProvider.getNoResetOption());
+            capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
         }
-        capabilities.setCapability(MobileCapabilityType.FULL_RESET, propertyProvider.getFullReset());
+        //понадобится в будущем для ресета всего набора тестов
+        //capabilities.setCapability(MobileCapabilityType.FULL_RESET, propertyProvider.getFullReset());
         return capabilities;
     }
 

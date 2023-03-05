@@ -7,15 +7,13 @@ import io.appium.java_client.pagefactory.AndroidFindAll;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ScreenOrientation;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 
 public class OnboardingScreen extends MainScreen {
 
-    public OnboardingScreen(AppiumDriver<WebElement> driver, WebDriverWait wait) {
+    public OnboardingScreen(AppiumDriver driver, WebDriverWait wait) {
         super(driver, wait);
     }
     @AndroidFindBy(id = "next")
